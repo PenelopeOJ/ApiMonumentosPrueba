@@ -1,49 +1,39 @@
 package com.turismo.apimonumentos.util;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
 
 public class DatabaseConnector {
 	
-	public static String URL_FORMAT="jdbc:mysql://%s:%s/%s"+
-			"?useUnicode=true" + 
-			"&useJDBCCompliantTimezoneShift=true" + 
-			"&useLegacyDatetimeCode=false" + 
-			"&serverTimezone=UTC";
-	
-	public static Connection getConnection() {
-		String serverHost="localhost";
-		String serverPort="3306";
-		String databaseName="turismo";
-		String userName="root";
-		String password="penelope96";
+	public static Session getSession() {
 		
-		Connection conn=null;
+		Session session=null;
+		StandardServiceRegistry registry=
+				new StandardServiceRegistryBuilder()
+				.configure()
+				.build();
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = String.format(URL_FORMAT, serverHost,serverPort,databaseName);
-			conn= DriverManager.getConnection(url,userName,password);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-			System.out.println("Fallo al realizar la conexion ");
-		}
+		SessionFactory sessionF=
+				new MetadataSources(registry)
+				.buildMetadata()
+				.buildSessionFactory();
 		
-		return conn;
+		session=sessionF.openSession();
+		System.out.println("Se creo la sesion Hibernate");
+		
+		return session;
 	}
 	
-	public static void closeConnection(Connection conn) {
-		try {
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("Fallo al cerrar la conexion");
+	public static void closeSession(Session session) {
+		if (session!=null) {
+			session.close();
+			System.out.println("Se cerro la sesion Hibernate");
 		}
+		
 	}
-	
-//	public static int queryCreator(String query,String[..] args ) {
-//		
-//	}
 	
 }
