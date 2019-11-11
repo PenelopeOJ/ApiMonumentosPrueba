@@ -23,7 +23,7 @@ public class DatabaseConnector {
 				.buildSessionFactory();
 		
 		session=sessionF.openSession();
-		System.out.println("Se creo la sesion Hibernate");
+		System.out.println("Se inicio la sesion Hibernate");
 		
 		return session;
 	}

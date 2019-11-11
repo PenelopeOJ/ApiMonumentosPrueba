@@ -1,6 +1,6 @@
 package com.turismo.apimonumentos.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -61,11 +61,11 @@ public class Monumento {
 	 * @param mostrable (boolean)
 	 * @param fechaRegistro (Date)
 	 */
-	public Monumento(int id, String nombre, int fechaConstruccion, boolean mostrable, Date fechaRegistro) {
+	public Monumento(int id, String nombre, int fechaConstruccion, Date fechaRegistro) {
 		this.id = id;
 		this.nombre = nombre;
 		this.fechaConstruccion = fechaConstruccion;
-		this.mostrable = mostrable;
+		this.mostrable = true;
 		this.fechaRegistro = fechaRegistro;
 		this.tiempoConstruccion = -1;
 	}
@@ -84,7 +84,7 @@ public class Monumento {
 	 * @param fechaRegistro (Date)
 	 */
 	public Monumento(int id, String nombre, int fechaConstruccion, String arquitectura, String disenador,
-			int tiempoConstruccion, String restauraciones, String uso, String funFacts, boolean mostrable,
+			int tiempoConstruccion, String restauraciones, String uso, String funFacts,
 			Date fechaRegistro) {
 		this.id = id;
 		this.nombre = nombre;
@@ -95,12 +95,10 @@ public class Monumento {
 		this.restauraciones = restauraciones;
 		this.uso = uso;
 		this.funFacts = funFacts;
-		this.mostrable = mostrable;
+		this.mostrable = true;
 		this.fechaRegistro = fechaRegistro;
 	}
-
-
-
+	
 	public int getId() {
 		return id;
 	}
@@ -188,7 +186,26 @@ public class Monumento {
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
-
+	
+	/**
+	 * Iguala los atributos del objeto que utiliza el metodo
+	 * con los del objeto que esta en el argumento
+	 * @param m
+	 */
+	public void actualizar(Monumento m) {
+		this.id=m.getId();
+		this.nombre=m.getNombre();
+		this.fechaConstruccion=m.getFechaConstruccion();
+		this.arquitectura=m.getArquitectura();
+		this.disenador=m.getDisenador();
+		this.tiempoConstruccion=m.getTiempoConstruccion();
+		this.restauraciones=m.getRestauraciones();
+		this.uso=m.getUso();
+		this.funFacts=m.getUso();
+		this.mostrable=m.isMostrable();
+		this.fechaRegistro=m.getFechaRegistro();
+	}
+	
 	@Override
 	public String toString() {
 		return "Monumento [id=" + id + ", nombre=" + nombre + ", fechaConstruccion=" + fechaConstruccion
