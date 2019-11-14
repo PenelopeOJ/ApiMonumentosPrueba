@@ -1,19 +1,55 @@
 package com.turismo.apimonumentos.models;
 
-import java.sql.Date;
+import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
 
+	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column
 	private String nombre;
+	
+	@Column
 	private int edad;
+	
+	@Column
 	private boolean admin;
+	
+	@Column
 	private String domicilio;
+	
+	@Column
 	private char genero;
+	
+	@Column
 	private String procedencia;
+	
+	@Column
 	private int telefono;
+	
+	@Column
 	private String email;
+	
+	@Column
 	private boolean visitado;
+	
+	@Column
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaVisita;
 	
 	/**
