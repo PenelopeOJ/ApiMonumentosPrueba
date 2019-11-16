@@ -14,52 +14,53 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name = "monumento")
 public class Monumento {
-	
+
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column
 	private String nombre;
 
 	@Column
 	private int fechaConstruccion;
-	
+
 	@Column
 	private String arquitectura;
-	
+
 	@Column
 	private String disenador;
-	
+
 	@Column
 	private int tiempoConstruccion;
-	
+
 	@Column
 	private String restauraciones;
-	
+
 	@Column
 	private String uso;
-	
+
 	@Column
 	private String funFacts;
-	
+
 	@Column
 	private boolean mostrable;
-	
+
 	@Column
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Date fechaRegistro;
-	
-	public Monumento() {}
+
+	public Monumento() {
+	}
 
 	/**
-	 * @param id (int)
-	 * @param nombre (String)
+	 * @param id                (int)
+	 * @param nombre            (String)
 	 * @param fechaConstruccion (int)
-	 * @param mostrable (boolean)
-	 * @param fechaRegistro (Date)
+	 * @param mostrable         (boolean)
+	 * @param fechaRegistro     (Date)
 	 */
 	public Monumento(int id, String nombre, int fechaConstruccion, Date fechaRegistro) {
 		this.id = id;
@@ -69,23 +70,22 @@ public class Monumento {
 		this.fechaRegistro = fechaRegistro;
 		this.tiempoConstruccion = -1;
 	}
-	
+
 	/**
-	 * @param id (int)
-	 * @param nombre (String)
-	 * @param fechaConstruccion (int)
-	 * @param arquitectura (String)
+	 * @param id                 (int)
+	 * @param nombre             (String)
+	 * @param fechaConstruccion  (int)
+	 * @param arquitectura       (String)
 	 * @param disenador(String)
 	 * @param tiempoConstruccion (int)
-	 * @param restauraciones (String)
-	 * @param uso (String)
-	 * @param funFacts (String)
-	 * @param mostrable (boolean)
-	 * @param fechaRegistro (Date)
+	 * @param restauraciones     (String)
+	 * @param uso                (String)
+	 * @param funFacts           (String)
+	 * @param mostrable          (boolean)
+	 * @param fechaRegistro      (Date)
 	 */
 	public Monumento(int id, String nombre, int fechaConstruccion, String arquitectura, String disenador,
-			int tiempoConstruccion, String restauraciones, String uso, String funFacts,
-			Date fechaRegistro) {
+			int tiempoConstruccion, String restauraciones, String uso, String funFacts, Date fechaRegistro) {
 		this.id = id;
 		this.nombre = nombre;
 		this.fechaConstruccion = fechaConstruccion;
@@ -98,7 +98,7 @@ public class Monumento {
 		this.mostrable = true;
 		this.fechaRegistro = fechaRegistro;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -186,32 +186,33 @@ public class Monumento {
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
-	
+
 	/**
-	 * Iguala los atributos del objeto que utiliza el metodo
-	 * con los del objeto que esta en el argumento
+	 * Iguala los atributos del objeto que utiliza el metodo con los del objeto que
+	 * esta en el argumento
+	 * 
 	 * @param m
 	 */
 	public void actualizar(Monumento m) {
-		this.id=m.getId();
-		this.nombre=m.getNombre();
-		this.fechaConstruccion=m.getFechaConstruccion();
-		this.arquitectura=m.getArquitectura();
-		this.disenador=m.getDisenador();
-		this.tiempoConstruccion=m.getTiempoConstruccion();
-		this.restauraciones=m.getRestauraciones();
-		this.uso=m.getUso();
-		this.funFacts=m.getUso();
-		this.mostrable=m.isMostrable();
-		this.fechaRegistro=m.getFechaRegistro();
+		this.id = m.getId();
+		this.nombre = m.getNombre();
+		this.fechaConstruccion = m.getFechaConstruccion();
+		this.arquitectura = m.getArquitectura();
+		this.disenador = m.getDisenador();
+		this.tiempoConstruccion = m.getTiempoConstruccion();
+		this.restauraciones = m.getRestauraciones();
+		this.uso = m.getUso();
+		this.funFacts = m.getUso();
+		this.mostrable = m.isMostrable();
+		this.fechaRegistro = m.getFechaRegistro();
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Monumento [id=" + id + ", nombre=" + nombre + ", fechaConstruccion=" + fechaConstruccion
 				+ ", arquitectura=" + arquitectura + ", disenador=" + disenador + ", tiempoConstruccion="
 				+ tiempoConstruccion + ", restauraciones=" + restauraciones + ", uso=" + uso + ", funFacts=" + funFacts
 				+ ", mostrable=" + mostrable + ", fechaRegistro=" + fechaRegistro + "]";
-	}	
+	}
 
 }
